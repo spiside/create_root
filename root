@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+
+if [ "$1" == 'create' ]; then
+	touch .root
+	if [ -e .gitignore ] && ! grep -qe ".root" .gitignore; then
+	 echo ".root" >> .gitignore 
+	fi
+else
+	while [ `pwd` != '/' ] && [ ! -e .root ]; do
+		cd ../
+	done
+fi
